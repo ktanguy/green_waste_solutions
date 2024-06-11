@@ -1,0 +1,139 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #ecebeb;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  display: flexbox;
+}
+header {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-between;
+  margin: 20px;
+}
+.logo {
+  font-size: 16px;
+}
+.main-menu ul {
+  display: flex;
+  list-style: none;
+  background-color: #1f1f1f;
+  width: 500px;
+  border-radius: 16px;
+  padding: 5px;
+  margin-top: -5px;
+}
+.main-menu ul li {
+  padding: 0 44px;
+  justify-content: center;
+}
+.others {
+  display: flex;
+}
+.other-buttons i {
+  border: 1px solid #d0d0d0;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  align-content: center;
+  border-radius: 50%;
+  margin-top: -10px;
+}
+.usr-prof {
+  display: flex;
+  background-color: #1f1f1f;
+  margin-top: -8px;
+  padding: 0 10px;
+  border-radius: 16px;
+  margin-left: 10px;
+}
+.usr-prof img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 8px;
+}
+.usr-prof p {
+  font-size: 14px;
+  padding: 0 5px;
+  text-align: center;
+  align-content: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+.upper {
+  display: flex;
+  width: 100%;
+  padding: 0 16px;
+}
+.upper h1 {
+  font-size: 40px;
+}
+.upper i {
+  margin-left: 50%;
+  margin-top: 18px;
+  font-size: 24px;
+  color: rgb(26, 84, 29);
+  cursor: pointer;
+}
+.analytic-view {
+  display: flex;
+  flex-direction: row;
+  padding: 0 16px;
+}
+.charts {
+  width: 50%;
+  height: 20em;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+}
+.track-history {
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  margin-left: 16px;
+  width: 28%;
+  height: 160px;
+}
+.fix {
+  display: flex;
+}
+.track-history h2 {
+  font-size: 16px;
+  padding: 18px 18px 12px;
+}
+.track-history p {
+  font-size: 12px;
+  padding: 0 18px;
+}
+.track-history h3 {
+  font-size: 14px;
+  padding: 0 18px;
+}
+.track-history .status {
+  color: rgb(247, 162, 43);
+  font-weight: bold;
+  font-size: 10px;
+  margin-left: 100px;
+}
+.order-info {
+  display: flex;
+  padding: 10px 0 0 14px;
+}
+.order-info i {
+  font-size: 26px;
+  background-color: #333333;
+  padding: 6px;
+  border-radius: 8px;
+}
+.order-info h3 {
+  font-weight: light;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Welcome</title>
+    <script
+      src="https://kit.fontawesome.com/3722bf26df.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/userPage.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <p>GWS</p>
+      </div>
+      <nav class="main-menu">
+        <ul>
+          <li>Overview</li>
+          <li>Tracking</li>
+          <li>Analytics</li>
+        </ul>
+      </nav>
+      <div class="others">
+        <div class="other-buttons">
+          <i class="fa-regular fa-bell"></i>
+        </div>
+        <div class="usr-prof">
+          <img src="#" alt="" />
+          <p>Anna Green</p>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="upper">
+        <h1>Green Waste Solution</h1>
+        <i class="fa-regular fa-square-plus"></i>
+      </section>
+      <section class="analytic-view">
+        <div class="charts">
+          <canvas id="myChart"></canvas>
+        </div>
+        <div class="track-history">
+          <h2>Tracking History</h2>
+          <p>Tracking ID</p>
+
+          <div class="fix">
+            <h3>#17986-12-779fg</h3>
+            <p class="status">Pending</p>
+          </div>
+          <div class="order-info">
+            <div>
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <div>
+              <p>Estimated recycling date</p>
+              <h3>8th July, 2024</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="recent-activities">
+        <div class="filters">
+          <h2>Recent Activities</h2>
+          <ul>
+            <li>All</li>
+            <li>Completed</li>
+            <li>Pending</li>
+            <li>Failed</li>
+          </ul>
+        </div>
+        <div class="Activities">
+          <table>
+            <th>Order ID</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Status</th>
+            <tr>
+              <td>#17986-12-779fg</td>
+              <td>Electronics</td>
+              <td>8th July, 2024</td>
+              <td>Pending</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>&copy; 2024</footer>
+
+    <script>
+      const ctx = document.getElementById("myChart");
+
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "June",
+            "July",
+            "Aug",
+            "Sept",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          datasets: [
+            {
+              label: "# of Recycled days",
+              data: [12, 19, 3, 5, 2, 3, 11],
+              borderWidth: 2,
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
