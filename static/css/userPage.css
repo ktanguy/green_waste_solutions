@@ -3,10 +3,16 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --white: #ecebeb;
+  --black: #0d0d0d;
+  --pending: rgb(247, 162, 43);
+  --green: #208a18;
+}
 
 body {
-  background-color: #0d0d0d;
-  color: #ecebeb;
+  background-color: var(--white);
+  color: var(--black);
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   display: flexbox;
@@ -23,7 +29,7 @@ header {
 .main-menu ul {
   display: flex;
   list-style: none;
-  background-color: #1f1f1f;
+  background-color: var(--green);
   width: 500px;
   border-radius: 16px;
   padding: 5px;
@@ -37,7 +43,7 @@ header {
   display: flex;
 }
 .other-buttons i {
-  border: 1px solid #d0d0d0;
+  border: 1px solid var(--black);
   width: 30px;
   height: 30px;
   text-align: center;
@@ -47,7 +53,7 @@ header {
 }
 .usr-prof {
   display: flex;
-  background-color: #1f1f1f;
+  background-color: var(--green);
   margin-top: -8px;
   padding: 0 10px;
   border-radius: 16px;
@@ -69,35 +75,41 @@ header {
 main {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .upper {
   display: flex;
   width: 100%;
+  justify-content: center;
   padding: 0 16px;
 }
 .upper h1 {
   font-size: 40px;
 }
 .upper i {
-  margin-left: 50%;
+  margin-left: 40%;
   margin-top: 18px;
   font-size: 24px;
-  color: rgb(26, 84, 29);
+  color: var(--green);
   cursor: pointer;
 }
 .analytic-view {
   display: flex;
   flex-direction: row;
   padding: 0 16px;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
 }
 .charts {
   width: 50%;
   height: 20em;
-  background-color: #1f1f1f;
+  background-color: var(--green);
   border-radius: 12px;
 }
 .track-history {
-  background-color: #1f1f1f;
+  background-color: var(--green);
+  color: var(--black);
   border-radius: 12px;
   margin-left: 16px;
   width: 28%;
@@ -119,10 +131,13 @@ main {
   padding: 0 18px;
 }
 .track-history .status {
-  color: rgb(247, 162, 43);
-  font-weight: bold;
   font-size: 10px;
   margin-left: 100px;
+}
+.pending {
+  color: var(--pending);
+  font-weight: bold;
+  font-size: 14px;
 }
 .order-info {
   display: flex;
@@ -130,10 +145,47 @@ main {
 }
 .order-info i {
   font-size: 26px;
-  background-color: #333333;
+  background-color: #256d20;
   padding: 6px;
   border-radius: 8px;
 }
 .order-info h3 {
   font-weight: light;
+}
+.recent-activities {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.filters {
+  display: flex;
+  flex-direction: row;
+}
+.filters ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin-left: 16px;
+  margin-top: 8px;
+}
+.filters ul li {
+  margin-right: 30px;
+  cursor: pointer;
+}
+.filters ul li:hover,
+.filters ul li:active {
+  border-bottom: 3px solid var(--black);
+  border-radius: 2px;
+}
+.Activities table {
+  width: 70%;
+  margin-top: 10px;
+}
+.Activities table th {
+  background-color: var(--green);
+  border: none;
+}
+.Activities table td {
+  text-align: center;
 }
