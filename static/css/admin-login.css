@@ -1,0 +1,88 @@
+html, body {
+    height: 100%;
+}
+
+body.admin-login-page {
+    background-color: #e6f3f5;
+    font-size: 14px;
+}
+
+.admin-login-page .brand {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,.05);
+    position: relative;
+    z-index: 1;
+}
+
+.admin-login-page .brand img {
+    width: 100%;
+}
+
+.admin-login-page .card-wrapper {
+    width: 400px;
+}
+
+.admin-login-page .card {
+    border-color: transparent;
+    box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+
+.admin-login-page .card.fat {
+    padding: 20px;
+}
+
+.admin-login-page .card .card-title {
+    margin-bottom: 30px;
+    color: #1d6f8a;
+}
+
+.admin-login-page .form-control {
+    border-width: 2.3px;
+}
+
+.admin-login-page .form-group label {
+    width: 100%;
+}
+
+.admin-login-page .btn.btn-block {
+    padding: 12px 10px;
+    background-color: #1d6f8a;
+    border-color: #1d6f8a;
+}
+
+.admin-login-page .footer {
+    margin: 40px 0;
+    color: #888;
+    text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+    .admin-login-page .card-wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .admin-login-page .card.fat {
+        padding: 0;
+    }
+
+    .admin-login-page .card.fat .card-body {
+        padding: 15px;
+    }
+}
+
+.float-right {
+    color: #1d6f8a;
+}
+
+.mt-4 link {
+    color: #1d6f8a;
+    text-decoration: none;
+    background-color: transparent;
+}

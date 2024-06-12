@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Admin Dashboard</title>
+    <script
+      src="https://kit.fontawesome.com/3722bf26df.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/adminpage.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <p>GWS Admin</p>
+      </div>
+      <nav class="main-menu">
+        <ul>
+          <li>Dashboard</li>
+          <li>Users</li>
+          <li>Reports</li>
+          <li>Settings</li>
+        </ul>
+      </nav>
+      <div class="others">
+        <div class="other-buttons">
+          <i class="fa-regular fa-bell"></i>
+        </div>
+        <div class="usr-prof">
+          <img src="#" alt="" />
+          <p>Admin Name</p>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="upper">
+        <h1>Admin Dashboard</h1>
+        <i class="fa-regular fa-square-plus"></i>
+      </section>
+      <section class="analytic-view">
+        <div class="charts">
+          <canvas id="myChart"></canvas>
+        </div>
+        <div class="user-management">
+          <h2>User Management</h2>
+          <p>Active Users</p>
+
+          <div class="fix">
+            <h3>150</h3>
+            <p class="status">Active</p>
+          </div>
+          <div class="order-info">
+            <div>
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div>
+              <p>Total Users</p>
+              <h3>200</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="recent-activities">
+        <div class="filters">
+          <h2>Recent Activities</h2>
+          <ul>
+            <li>All</li>
+            <li>Completed</li>
+            <li>Pending</li>
+            <li>Failed</li>
+          </ul>
+        </div>
+        <div class="Activities">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#17986-12-779fg</td>
+                <td>Electronics</td>
+                <td>8th July, 2024</td>
+                <td>Pending</td>
+              </tr>
+              <!-- Additional rows for recent activities -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>&copy; 2024 Green Waste Solutions Admin Panel</footer>
+
+    <script>
+      const ctx = document.getElementById("myChart");
+
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "June",
+            "July",
+            "Aug",
+            "Sept",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          datasets: [
+            {
+              label: "# of Recycled days",
+              data: [12, 19, 3, 5, 2, 3, 11],
+              borderWidth: 2,
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
