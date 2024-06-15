@@ -1,237 +1,178 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    background-color: #101010;
-    color: #f1f1f1;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    display: flexbox;
-  }
-  
-  header {
-    display: flex;
-    max-width: 100%;
-    justify-content: space-between;
-    margin: 20px;
-  }
-  
-  .logo {
-    font-size: 20px;
-    color: #1d6f8a;
-  }
-  
-  .main-menu ul {
-    display: flex;
-    list-style: none;
-    background-color: #1f1f1f;
-    width: 600px;
-    border-radius: 16px;
-    padding: 5px;
-    margin-top: -5px;
-  }
-  
-  .main-menu ul li {
-    padding: 0 40px;
-    justify-content: center;
-    cursor: pointer;
-    color: #a5a5a5;
-  }
-  
-  .main-menu ul li:hover {
-    color: #ffffff;
-  }
-  
-  .others {
-    display: flex;
-  }
-  
-  .other-buttons i {
-    border: 1px solid #d0d0d0;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    align-content: center;
-    border-radius: 50%;
-    margin-top: -10px;
-    cursor: pointer;
-  }
-  
-  .usr-prof {
-    display: flex;
-    background-color: #1f1f1f;
-    margin-top: -8px;
-    padding: 0 10px;
-    border-radius: 16px;
-    margin-left: 10px;
-  }
-  
-  .usr-prof img {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-top: 8px;
-  }
-  
-  .usr-prof p {
-    font-size: 14px;
-    padding: 0 5px;
-    text-align: center;
-    align-content: center;
-  }
-  
-  main {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .upper {
-    display: flex;
-    width: 100%;
-    padding: 0 16px;
-  }
-  
-  .upper h1 {
-    font-size: 40px;
-    color: #1d6f8a;
-  }
-  
-  .upper i {
-    margin-left: 50%;
-    margin-top: 18px;
-    font-size: 24px;
-    color: rgb(29, 100, 115);
-    cursor: pointer;
-  }
-  
+/* General styles */
+html, body {
+  height: 100%;
+  background-color: #f7f9fb;
+  font-size: 14px;
+}
+
+/* Header styles */
+header {
+  background-color: #227831; /* Using the button background color from login page */
+  color: white;
+  padding: 10px 0;
+}
+
+header .logo p {
+  margin: 0;
+  padding: 0 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+header .main-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+header .main-menu ul li {
+  padding: 10px 20px;
+}
+
+header .others {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-right: 20px;
+}
+
+header .others .other-buttons i {
+  color: white;
+}
+
+header .others .usr-prof {
+  display: flex;
+  align-items: center;
+}
+
+header .others .usr-prof img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Main content styles */
+main {
+  padding: 20px;
+}
+
+main .upper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+main .upper h1 {
+  margin: 0;
+}
+
+main .upper i {
+  font-size: 24px;
+  color: #227831;
+}
+
+/* Analytic view styles */
+.analytic-view {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.analytic-view .charts {
+  flex: 2;
+}
+
+.analytic-view .user-management {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+
+.analytic-view .user-management h2 {
+  margin-top: 0;
+}
+
+.analytic-view .user-management .fix {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.analytic-view .user-management .order-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.analytic-view .user-management .order-info div {
+  text-align: center;
+}
+
+/* Recent activities styles */
+.recent-activities {
+  margin-top: 20px;
+}
+
+.recent-activities .filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recent-activities .filters h2 {
+  margin: 0;
+}
+
+.recent-activities .filters ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.recent-activities .filters ul li {
+  padding: 5px 10px;
+  background-color: #227831;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.recent-activities .Activities table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,.05);
+  background-color: white;
+}
+
+.recent-activities .Activities table th, 
+.recent-activities .Activities table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.recent-activities .Activities table th {
+  background-color: #f7f9fb;
+}
+
+/* Footer styles */
+footer {
+  margin: 40px 0;
+  color: #888;
+  text-align: center;
+}
+
+/* Media queries */
+@media screen and (max-width: 425px) {
   .analytic-view {
-    display: flex;
-    flex-direction: row;
-    padding: 0 16px;
+      flex-direction: column;
   }
-  
-  .charts {
-    width: 50%;
-    height: 20em;
-    background-color: #1f1f1f;
-    border-radius: 12px;
-  }
-  
-  .track-history {
-    background-color: #1f1f1f;
-    border-radius: 12px;
-    margin-left: 16px;
-    width: 28%;
-    height: 160px;
-  }
-  
-  .fix {
-    display: flex;
-  }
-  
-  .track-history h2 {
-    font-size: 16px;
-    padding: 18px 18px 12px;
-    color: #1d6f8a;
-  }
-  
-  .track-history p {
-    font-size: 12px;
-    padding: 0 18px;
-  }
-  
-  .track-history h3 {
-    font-size: 14px;
-    padding: 0 18px;
-  }
-  
-  .track-history .status {
-    color: rgb(247, 162, 43);
-    font-weight: bold;
-    font-size: 10px;
-    margin-left: 100px;
-  }
-  
-  .order-info {
-    display: flex;
-    padding: 10px 0 0 14px;
-  }
-  
-  .order-info i {
-    font-size: 26px;
-    background-color: #333333;
-    padding: 6px;
-    border-radius: 8px;
-  }
-  
-  .order-info h3 {
-    font-weight: light;
-  }
-  
-  .recent-activities {
-    padding: 16px;
-  }
-  
-  .filters {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .filters h2 {
-    color: #1d6f8a;
-  }
-  
-  .filters ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-  }
-  
-  .filters ul li {
-    margin-right: 20px;
-    cursor: pointer;
-    color: #a5a5a5;
-  }
-  
-  .filters ul li:hover {
-    color: #ffffff;
-  }
-  
-  .Activities {
-    background-color: #1f1f1f;
-    border-radius: 12px;
-    padding: 16px;
-  }
-  
-  .Activities table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .Activities th, .Activities td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .Activities th {
-    background-color: #2a2a2a;
-  }
-  
-  .Activities tr:nth-child(even) {
-    background-color: #2a2a2a;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #1f1f1f;
-    color: #888;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-  
+}
