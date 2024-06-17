@@ -2,27 +2,43 @@ from flask import Flask, render_template, redirect, url_for, request, flash, sen
 import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+from flask_migrate import Migrate
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
-app.config['TEMPLATES_AUTO_RELOAD'] = True  # Optional: Auto-reload templates in development
-app.template_folder = 'login'  # Set the custom template folder
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance_path, 'db.sqlite')  # Updated URI to point to instance folder
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable modification tracking
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.template_folder = 'login'
+
+# Initialize Flask extensions
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+# Setup Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+# Define the User model
 class User(UserMixin, db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
-    phone_number = db.Column(db.String(20))  # Assuming phone number is a string
-    gender = db.Column(db.String(10))  # Assuming gender is a string, can be 'male', 'female', 'other'
+    phone_number = db.Column(db.String(20), unique=True, nullable=True)
+    gender = db.Column(db.String(10), nullable=True)
 
+    def __repr__(self):
+        return f'<User {self.username}>'
+
+# User loader function for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+# Routes
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -30,14 +46,15 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         if not username or not password:
-            flash('Please provide both username and password')
+            flash('Please provide both username and password', 'danger')
             return redirect(url_for('login'))
         user = User.query.filter_by(username=username).first()
-        if user and user.password == password:
+        if user and check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for('dashboard'))
+            flash('Logged in successfully.', 'success')
+            return redirect(url_for('user_page'))  # Redirect to user_page route after login
         else:
-            flash('Invalid credentials')
+            flash('Invalid credentials', 'danger')
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -48,35 +65,40 @@ def register():
         phone_number = request.form.get('phone_number')
         gender = request.form.get('gender')
         if not username or not password:
-            flash('Please provide both username and password')
+            flash('Please provide both username and password', 'danger')
             return redirect(url_for('register'))
-        new_user = User(username=username, password=password, phone_number=phone_number, gender=gender)
-        db.session.add(new_user)
-        db.session.commit()
-        flash('User registered successfully!')
-        return redirect(url_for('login'))
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+        new_user = User(username=username, password=hashed_password, phone_number=phone_number, gender=gender)
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            flash('User registered successfully!', 'success')
+            return redirect(url_for('login'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error: {str(e)}', 'danger')
+            return redirect(url_for('register'))
     return render_template('register.html')
 
-@app.route('/dashboard')
+@app.route('/user_page')
 @login_required
-def dashboard():
-    return 'Welcome to your dashboard!'
+def user_page():
+    return render_template('userPage.html')
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
+    flash('Logged out successfully.', 'success')
     return redirect(url_for('login'))
 
 @app.route('/')
 def index():
-    return 'Hello, World!'
+    return redirect(url_for('register'))
 
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
