@@ -6,11 +6,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <title>Welcome</title>
-    <script
-      src="https://kit.fontawesome.com/3722bf26df.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="./css/userPage.css" />
+    <script src="https://kit.fontawesome.com/3722bf26df.js" crossorigin="anonymous"></script>
+    <!-- Use Flask's url_for to correctly link to the static CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userPage.css') }}" />
   </head>
   <body>
     <header>
@@ -74,16 +72,22 @@
         </div>
         <div class="Activities">
           <table>
-            <th>Order ID</th>
-            <th>Category</th>
-            <th>Date</th>
-            <th>Status</th>
-            <tr>
-              <td>#17986-12-779fg</td>
-              <td>Electronics</td>
-              <td>8th July, 2024</td>
-              <td class="pending">Pending</td>
-            </tr>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#17986-12-779fg</td>
+                <td>Electronics</td>
+                <td>8th July, 2024</td>
+                <td class="pending">Pending</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </section>
