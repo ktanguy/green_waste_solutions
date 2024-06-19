@@ -1,14 +1,14 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, send_from_directory
 import os
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance_path, 'db.sqlite')  # Updated URI to point to instance folder
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable modification tracking
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.instance_path, 'db.sqlite')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.template_folder = 'login'
 
@@ -83,7 +83,8 @@ def register():
 @app.route('/user_page')
 @login_required
 def user_page():
-    return render_template('userPage.html')
+    user = current_user
+    return render_template('userPage.html', user=user)
 
 @app.route('/logout')
 @login_required
