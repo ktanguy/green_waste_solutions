@@ -22,6 +22,7 @@
                 <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fa-regular fa-bell"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><img src="#" alt="" class="rounded-circle" width="30"> Anna Green</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-outline-light ml-2" href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
         </div>
     </header>
@@ -36,6 +37,29 @@
                 <h2>User Management</h2>
                 <p><strong>Active Users:</strong> 150</p>
                 <p><strong>Total Users:</strong> 200</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h2>Tracking</h2>
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <i class="fa-solid fa-box fa-3x"></i>
+                        <p>Tracking ID</p>
+                        <p>#17986-12-779fg</p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <i class="fa-solid fa-clock-rotate-left fa-3x"></i>
+                        <p>Estimated recycling date</p>
+                        <p>8th July, 2024</p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <i class="fa-solid fa-truck fa-3x"></i>
+                        <p>Status</p>
+                        <p class="text-warning">Pending</p>
+                    </div>
+                    <!-- Add more tracking items as needed -->
+                </div>
             </div>
         </div>
         <h2>Recent Activities</h2>
