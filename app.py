@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -28,7 +29,7 @@ login_manager.login_view = 'login'
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), unique=True, nullable=False)
+    username = db.Column(db.String(150), nullable=False)  # No longer unique
     password = db.Column(db.String(150), nullable=False)
     phone_number = db.Column(db.String(20), unique=True, nullable=True)
     gender = db.Column(db.String(10), nullable=True)
@@ -94,9 +95,12 @@ def register():
             db.session.commit()
             flash('User registered successfully!', 'success')
             return redirect(url_for('login'))
-        except Exception as e:
+        except IntegrityError as e:
             db.session.rollback()
-            flash(f'Error: {str(e)}', 'danger')
+            if 'UNIQUE constraint failed: user.phone_number' in str(e):
+                flash('Error: Phone number already exists. Please use a different phone number.', 'danger')
+            else:
+                flash('An error occurred. Please try again.', 'danger')
             return redirect(url_for('register'))
     return render_template('register.html')
 
