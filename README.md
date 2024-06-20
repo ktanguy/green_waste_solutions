@@ -1,5 +1,5 @@
-```markdown
 **Green Waste Solutions**
+
 
 ## Project Overview
 The Green Waste Solutions is an innovative web application developed to solve real-world problems by enhancing waste collection, recycling, and resource management through intelligent technologies. This system integrates various elements learned throughout the Enterprise Web Development course.
