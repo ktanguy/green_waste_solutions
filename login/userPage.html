@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>User Page - GreenWaste Solutions</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/userPage.css') }}">
     <script src="https://kit.fontawesome.com/3722bf26df.js" crossorigin="anonymous"></script>
@@ -16,9 +16,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Overview</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Tracking</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fa-regular fa-bell"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><img src="#" alt="" class="rounded-circle" width="30"> {{ user.username }}</a></li>
                 <li class="nav-item"><a class="nav-link btn btn-outline-light ml-2" href="{{ url_for('logout') }}">Logout</a></li>
@@ -29,7 +26,25 @@
         <div class="row">
             <div class="col-md-8">
                 <h1>Green Waste Solution</h1>
-                <button class="btn btn-success mb-3"><i class="fa-regular fa-square-plus"></i> Add New</button>
+                <form method="POST" action="{{ url_for('user_page') }}">
+                    <div class="form-group">
+                        <label for="order_id">Order ID</label>
+                        <input type="text" class="form-control" id="order_id" name="order_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <input type="text" class="form-control" id="category" name="category" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <input type="text" class="form-control" id="status" name="status" required>
+                    </div>
+                    <button type="submit" class="btn btn-success mb-3"><i class="fa-regular fa-square-plus"></i> Add New</button>
+                </form>
                 <div class="card">
                     <div class="card-body">
                         <h2>User Management</h2>
@@ -42,26 +57,27 @@
                 <h2>Tracking</h2>
                 <div class="card">
                     <div class="card-body">
+                        {% for data in data_entries %}
                         <div class="row">
                             <div class="col-md-4 text-center">
                                 <i class="fa-solid fa-box fa-3x text-success"></i>
                                 <p>Tracking ID</p>
-                                <p>#17986-12-779fg</p>
+                                <p>{{ data.order_id }}</p>
                             </div>
                             <div class="col-md-4 text-center">
                                 <i class="fa-solid fa-clock-rotate-left fa-3x text-success"></i>
                                 <p>Estimated recycling date</p>
-                                <p>8th July, 2024</p>
+                                <p>{{ data.date }}</p>
                             </div>
                             <div class="col-md-4 text-center">
                                 <i class="fa-solid fa-truck fa-3x text-success"></i>
                                 <p>Status</p>
-                                <p class="text-warning">Pending</p>
+                                <p class="text-warning">{{ data.status }}</p>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
-                <!-- Add more tracking items as needed -->
             </div>
         </div>
         <h2 class="mt-4">Recent Activities</h2>
@@ -88,13 +104,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for data in data_entries %}
                         <tr>
-                            <td>#17986-12-779fg</td>
-                            <td>Electronics</td>
-                            <td>8th July, 2024</td>
-                            <td class="text-warning">Pending</td>
+                            <td>{{ data.order_id }}</td>
+                            <td>{{ data.category }}</td>
+                            <td>{{ data.date }}</td>
+                            <td class="text-warning">{{ data.status }}</td>
                         </tr>
-                        <!-- Add more rows as needed -->
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
