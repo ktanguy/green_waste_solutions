@@ -1,5 +1,5 @@
 ```markdown
-# Green Waste Solutions
+**Green Waste Solutions**
 
 ## Project Overview
 The Green Waste Solutions is an innovative web application developed to solve real-world problems by enhancing waste collection, recycling, and resource management through intelligent technologies. This system integrates various elements learned throughout the Enterprise Web Development course.
@@ -13,7 +13,8 @@ The Green Waste Solutions is an innovative web application developed to solve re
 - [Contributors](#contributors)
 - [Slides for Presentation](#slides-for-presentation)
 
-## Features
+_**Features**_
+
 ### User Registration and Login
 - Implemented user registration and login functionalities using Flask-Login for user session management.
 ### Waste Collection Schedule
@@ -25,13 +26,15 @@ The Green Waste Solutions is an innovative web application developed to solve re
 ### Admin Dashboard
 - Admin dashboard for monitoring overall system performance and managing users.
 
-## Setup Instructions
+**_Setup Instructions_**
+
 ### Prerequisites
 - Python
 - MySQL
 - Flask
 
-### Installation
+_**Installation**_
+
 1. Clone the repository:
    ```sh
    git clone https://github.com/ktanguy/green_waste_solutions.git
@@ -41,13 +44,10 @@ The Green Waste Solutions is an innovative web application developed to solve re
 2. Set up the virtual environment:
    ```sh
    python -m venv venv
-   venv/bin/activate
+   venv\Scripts\activate
    ```
 
-3. Install the dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
+   Install the dependencies:
 
 4. Configure the database:
    - Update the database URI in `db.sqlite.
@@ -77,12 +77,13 @@ The Green Waste Solutions is an innovative web application developed to solve re
 - Used Fabric for deployment and management tasks.
 
 
-## Contributors
-- Kwizera Tanguy(https://github.com/ktanguy)
-- Bugingo Cysron(https://github.com/cysron-b)
-- Irakoze Amandine(https://github.com/Amandine0610)
-- Rurangwa Prince(https://github.com/Ruran8wa)
-- Ramona(https://github.com/DevRamon)
+_**Contributors**_
+
+- Kwizera Tanguy (https://github.com/ktanguy)
+- Bugingo Cysron (https://github.com/cysron-b)
+- Irakoze Amandine (https://github.com/Amandine0610)
+- Rurangwa Prince (https://github.com/Ruran8wa)
+- Ramona (https://github.com/DevRamon)
 
 ## Slides for Presentation
 [Presentation Slides](https://www.canva.com/design/DAGIeVw9jRQ/f1B84LTZQmKkx2_gl5fXDw/edit?utm_content=DAGIeVw9jRQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
