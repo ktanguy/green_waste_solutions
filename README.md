@@ -32,6 +32,8 @@ _**Features**_
 - Python
 - MySQL
 - Flask
+- HTML
+- CSS
 
 _**Installation**_
 
