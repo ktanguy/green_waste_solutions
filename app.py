@@ -29,7 +29,7 @@ login_manager.login_view = 'login'
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), nullable=False)  # No longer unique
+    username = db.Column(db.String(150), nullable=False)
     password = db.Column(db.String(150), nullable=False)
     phone_number = db.Column(db.String(20), unique=True, nullable=True)
     gender = db.Column(db.String(10), nullable=True)
