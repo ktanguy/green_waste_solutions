@@ -1,142 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/adminpage.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <title>Admin Dashboard</title>
-    <script
-      src="https://kit.fontawesome.com/3722bf26df.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="../static/css/adminpage.css" />
-  </head>
-  <body>
-    <header>
-      <div class="logo">
-        <p>GWS Admin</p>
-      </div>
-      <nav class="main-menu">
-        <ul>
-          <li>Dashboard</li>
-          <li>Users</li>
-          <li>Reports</li>
-          <li>Settings</li>
-        </ul>
-      </nav>
-      <div class="others">
-        <div class="other-buttons">
-          <i class="fa-regular fa-bell"></i>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page - GreenWaste Solutions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adminPage.css') }}"> <!-- Assuming adminPage.css for styling -->
+    <script src="https://kit.fontawesome.com/3722bf26df.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-success">
+        <a class="navbar-brand" href="#">Admin Dashboard - Green Waste Solution</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fa-regular fa-bell"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><img src="#" alt="" class="rounded-circle" width="30"> Admin</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-outline-light ml-2" href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
         </div>
-        <div class="usr-prof">
-          <img src="../static/img/adminlogo.jpg" alt="" />
-          <p>Admin Name</p>
-        </div>
-      </div>
     </header>
-    <main>
-      <section class="upper">
-        <h1>Admin Dashboard</h1>
-        <i class="fa-regular fa-square-plus"></i>
-      </section>
-      <section class="analytic-view">
-        <div class="charts">
-          <canvas id="myChart"></canvas>
-        </div>
-        <div class="user-management">
-          <h2>User Management</h2>
-          <p>Active Users</p>
-
-          <div class="fix">
-            <h3>150</h3>
-            <p class="status">Active</p>
-          </div>
-          <div class="order-info">
-            <div>
-              <i class="fa-solid fa-users"></i>
+    <div class="container mt-4">
+        <h1>Welcome, Admin!</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <h2>User Management</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Form for Adding New Users -->
+                        <h3>Add New User</h3>
+                        <form method="POST" action="{{ url_for('add_user') }}">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number">Phone Number</label>
+                                <select class="form-control" id="phone_number" name="phone_number" required>
+                                    {% for user in users %}
+                                    <option value="{{ user.phone_number }}">{{ user.phone_number }} - {{ user.username }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-success mb-3"><i class="fa-regular fa-square-plus"></i> Add User</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <!-- User List with Delete Functionality -->
+                        <h3>User List</h3>
+                        <ul class="list-group">
+                            {% for user in user_list %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ user.username }}
+                                <span class="badge badge-danger badge-pill"><a href="{{ url_for('delete_user', user_id=user.id) }}" class="text-white"><i class="fa-solid fa-trash"></i> Delete</a></span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div>
-              <p>Total Users</p>
-              <h3>200</h3>
+            <div class="col-md-4">
+                <h2>Analytics</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Placeholder for Analytics -->
+                        <h3>Analytics Overview</h3>
+                        <canvas id="analyticsChart" width="100" height="100"></canvas>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </section>
-      <section class="recent-activities">
-        <div class="filters">
-          <h2>Recent Activities</h2>
-          <ul>
-            <li>All</li>
-            <li>Completed</li>
-            <li>Pending</li>
-            <li>Failed</li>
-          </ul>
-        </div>
-        <div class="Activities">
-          <table>
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Category</th>
-                <th>Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#17986-12-779fg</td>
-                <td>Electronics</td>
-                <td>8th July, 2024</td>
-                <td>Pending</td>
-              </tr>
-              <!-- Additional rows for recent activities -->
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </main>
-    <footer>&copy; 2024 Green Waste Solutions Admin Panel</footer>
+    </div>
+    <footer class="bg-light text-center py-3">&copy; 2024 Green Waste Solution</footer>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-      const ctx = document.getElementById("myChart");
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dummy data for analytics
+            var labels = ['January', 'February', 'March', 'April', 'May'];
+            var data = [65, 59, 80, 81, 56];
 
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "June",
-            "July",
-            "Aug",
-            "Sept",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-          datasets: [
-            {
-              label: "# of Recycled days",
-              data: [12, 19, 3, 5, 2, 3, 11],
-              borderWidth: 2,
-              fill: false,
-              borderColor: "rgb(75, 192, 192)",
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
+            var ctx = document.getElementById('analyticsChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Dummy Data',
+                        data: data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
