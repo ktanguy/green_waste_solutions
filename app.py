@@ -131,6 +131,22 @@ def admin_page():
         return redirect(url_for('user_page'))
     users = User.query.all()
     if request.method == 'POST':
+        username = request.form.get('username')
+        phone_number = request.form.get('phone_number')
+        if username and phone_number:
+            hashed_password = generate_password_hash('defaultpassword', method='pbkdf2:sha256')
+            new_user = User(username=username, password=hashed_password, phone_number=phone_number)
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                flash('User added successfully!', 'success')
+            except IntegrityError as e:
+                db.session.rollback()
+                if 'UNIQUE constraint failed: user.phone_number' in str(e):
+                    flash('Error: Phone number already exists. Please use a different phone number.', 'danger')
+                else:
+                    flash('An error occurred. Please try again.', 'danger')
+    if request.method == 'POST' and request.form.get('delete_user'):
         user_id = request.form.get('user_id')
         if user_id:
             user = User.query.get(user_id)
@@ -142,7 +158,30 @@ def admin_page():
                 except Exception as e:
                     db.session.rollback()
                     flash(f'Error deleting user: {str(e)}', 'danger')
-    return render_template('adminPage.html', user=current_user, users=users)
+    return render_template('adminpage.html', user=current_user, users=users)
+
+@app.route('/add_user', methods=['POST'])
+@login_required
+def add_user():
+    if current_user.role != 'admin':
+        flash('Access denied: Admins only.', 'danger')
+        return redirect(url_for('user_page'))
+    username = request.form.get('username')
+    phone_number = request.form.get('phone_number')
+    if username and phone_number:
+        hashed_password = generate_password_hash('defaultpassword', method='pbkdf2:sha256')
+        new_user = User(username=username, password=hashed_password, phone_number=phone_number)
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            flash('User added successfully!', 'success')
+        except IntegrityError as e:
+            db.session.rollback()
+            if 'UNIQUE constraint failed: user.phone_number' in str(e):
+                flash('Error: Phone number already exists. Please use a different phone number.', 'danger')
+            else:
+                flash('An error occurred. Please try again.', 'danger')
+    return redirect(url_for('admin_page'))
 
 @app.route('/logout')
 @login_required

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page - GreenWaste Solutions</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/adminPage.css') }}"> <!-- Assuming adminPage.css for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adminPage.css') }}">
     <script src="https://kit.fontawesome.com/3722bf26df.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -38,11 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="phone_number">Phone Number</label>
-                                <select class="form-control" id="phone_number" name="phone_number" required>
-                                    {% for user in users %}
-                                    <option value="{{ user.phone_number }}">{{ user.phone_number }} - {{ user.username }}</option>
-                                    {% endfor %}
-                                </select>
+                                <input type="text" class="form-control" id="phone_number" name="phone_number" required>
                             </div>
                             <button type="submit" class="btn btn-success mb-3"><i class="fa-regular fa-square-plus"></i> Add User</button>
                         </form>
@@ -53,10 +49,15 @@
                         <!-- User List with Delete Functionality -->
                         <h3>User List</h3>
                         <ul class="list-group">
-                            {% for user in user_list %}
+                            {% for user in users %}
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 {{ user.username }}
-                                <span class="badge badge-danger badge-pill"><a href="{{ url_for('delete_user', user_id=user.id) }}" class="text-white"><i class="fa-solid fa-trash"></i> Delete</a></span>
+                                <span class="badge badge-danger badge-pill">
+                                    <form method="POST" action="{{ url_for('admin_page') }}" style="display: inline;">
+                                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                                        <button type="submit" name="delete_user" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Delete</button>
+                                    </form>
+                                </span>
                             </li>
                             {% endfor %}
                         </ul>
