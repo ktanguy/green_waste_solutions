@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userPage.css') }}">
+    <script src="https://kit.fontawesome.com/3722bf26df.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-success">
+        <a class="navbar-brand" href="#">Green Waste Solution</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Overview</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Tracking</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fa-regular fa-bell"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><img src="#" alt="" class="rounded-circle" width="30"> Anna Green</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-outline-light ml-2" href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Green Waste Solution</h1>
+                <button class="btn btn-success mb-3"><i class="fa-regular fa-square-plus"></i> Add New</button>
+                <div class="card">
+                    <div class="card-body">
+                        <h2>User Management</h2>
+                        <p><strong>Active Users:</strong> 150</p>
+                        <p><strong>Total Users:</strong> 200</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h2>Tracking</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <i class="fa-solid fa-box fa-3x text-success"></i>
+                                <p>Tracking ID</p>
+                                <p>#17986-12-779fg</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <i class="fa-solid fa-clock-rotate-left fa-3x text-success"></i>
+                                <p>Estimated recycling date</p>
+                                <p>8th July, 2024</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <i class="fa-solid fa-truck fa-3x text-success"></i>
+                                <p>Status</p>
+                                <p class="text-warning">Pending</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more tracking items as needed -->
+            </div>
+        </div>
+        <h2 class="mt-4">Recent Activities</h2>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-completed-tab" data-toggle="pill" href="#pills-completed" role="tab" aria-controls="pills-completed" aria-selected="false">Completed</a></li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-pending-tab" data-toggle="pill" href="#pills-pending" role="tab" aria-controls="pills-pending" aria-selected="false">Pending</a></li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-failed-tab" data-toggle="pill" href="#pills-failed" role="tab" aria-controls="pills-failed" aria-selected="false">Failed</a></li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#17986-12-779fg</td>
+                            <td>Electronics</td>
+                            <td>8th July, 2024</td>
+                            <td class="text-warning">Pending</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="pills-completed" role="tabpanel" aria-labelledby="pills-completed-tab">
+                <!-- Completed activities table -->
+            </div>
+            <div class="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
+                <!-- Pending activities table -->
+            </div>
+            <div class="tab-pane fade" id="pills-failed" role="tabpanel" aria-labelledby="pills-failed-tab">
+                <!-- Failed activities table -->
+            </div>
+        </div>
+    </div>
+    <footer class="bg-light text-center py-3">&copy; 2024 Green Waste Solution</footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

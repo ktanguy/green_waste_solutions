@@ -5,189 +5,215 @@
   padding: 0;
 }
 :root {
+  --gray: #e7e9eb;
   --white: #ecebeb;
   --black: #0d0d0d;
   --pending: rgb(247, 162, 43);
-  --green: #208a18;
+  --green: #059862;
 }
 
 body {
-  background-color: var(--white);
+  background-color: var(--gray);
   color: var(--black);
   font-family: "Roboto", sans-serif;
   display: flexbox;
 }
+
 header {
   display: flex;
-  max-width: 100%;
   justify-content: space-between;
-  margin: 20px;
+  background-color: var(--green);
+  color: var(--white);
+  padding: 10px 20px;
 }
+
 .logo {
   font-size: 16px;
 }
+
 .main-menu ul {
   display: flex;
   list-style: none;
-  background-color: var(--green);
-  width: 500px;
-  border-radius: 16px;
+  color: var(--white);
   padding: 5px;
-  margin-top: -5px;
 }
+
 .main-menu ul li {
-  padding: 0 44px;
-  justify-content: center;
+  padding: 0 20px;
 }
+
 .others {
   display: flex;
+  align-items: center;
 }
+
 .other-buttons i {
-  border: 1px solid var(--black);
+  background-color: var(--white);
+  color: var(--green);
   width: 30px;
   height: 30px;
   text-align: center;
-  align-content: center;
+  line-height: 30px;
   border-radius: 50%;
-  margin-top: -10px;
+  margin-right: 10px;
 }
+
+.other-buttons i:hover,
+.other-buttons i:active {
+  background-color: var(--green);
+  color: var(--white);
+}
+
 .usr-prof {
   display: flex;
-  background-color: var(--green);
-  margin-top: -8px;
-  padding: 0 10px;
+  align-items: center;
+  background-color: var(--white);
+  color: var(--green);
+  padding: 5px 10px;
   border-radius: 16px;
-  margin-left: 10px;
+  margin-right: 10px;
 }
+
 .usr-prof img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  margin-top: 8px;
+  margin-right: 10px;
 }
+
 .usr-prof p {
   font-size: 14px;
-  padding: 0 5px;
-  text-align: center;
-  align-content: center;
+  margin: 0;
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  padding: 20px;
 }
+
 .upper {
   display: flex;
-  width: 100%;
-  justify-content: center;
-  padding: 0 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
+
 .upper h1 {
   font-size: 40px;
 }
+
 .upper i {
-  margin-left: 40%;
-  margin-top: 18px;
   font-size: 24px;
   color: var(--green);
   cursor: pointer;
 }
+
 .analytic-view {
   display: flex;
-  flex-direction: row;
-  padding: 0 16px;
-  margin: auto;
-  width: 100%;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
+
 .charts {
-  width: 50%;
-  height: 20em;
-  background-color: var(--green);
+  flex: 1;
+  background-color: var(--white);
+  padding: 20px;
   border-radius: 12px;
 }
+
 .track-history {
-  background-color: var(--green);
-  color: var(--black);
+  flex: 0.4;
+  background-color: var(--white);
+  padding: 20px;
   border-radius: 12px;
-  margin-left: 16px;
-  width: 28%;
-  height: 160px;
 }
-.fix {
-  display: flex;
-}
+
 .track-history h2 {
   font-size: 16px;
-  padding: 18px 18px 12px;
+  margin-bottom: 10px;
 }
-.track-history p {
-  font-size: 12px;
-  padding: 0 18px;
-}
+
+.track-history p,
 .track-history h3 {
   font-size: 14px;
-  padding: 0 18px;
+  margin-bottom: 5px;
 }
+
 .track-history .status {
-  font-size: 10px;
-  margin-left: 100px;
+  font-size: 12px;
 }
+
 .pending {
   color: var(--pending);
   font-weight: bold;
-  font-size: 14px;
 }
+
 .order-info {
   display: flex;
-  padding: 10px 0 0 14px;
+  align-items: center;
+  margin-top: 10px;
 }
+
 .order-info i {
   font-size: 26px;
   background-color: #256d20;
-  padding: 6px;
+  color: var(--white);
+  padding: 10px;
   border-radius: 8px;
+  margin-right: 10px;
 }
-.order-info h3 {
-  font-weight: light;
-}
+
 .recent-activities {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
   margin-top: 20px;
 }
+
 .filters {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
 }
+
+.filters h2 {
+  margin-right: 20px;
+}
+
 .filters ul {
   display: flex;
-  flex-direction: row;
   list-style: none;
-  margin-left: 16px;
-  margin-top: 8px;
 }
+
 .filters ul li {
-  margin-right: 30px;
+  margin-right: 20px;
   cursor: pointer;
 }
+
 .filters ul li:hover,
 .filters ul li:active {
   border-bottom: 3px solid var(--black);
   border-radius: 2px;
 }
+
 .Activities table {
-  width: 70%;
-  margin-top: 10px;
+  width: 100%;
+  background-color: var(--white);
 }
+
+.Activities table th,
+.Activities table td {
+  padding: 10px;
+  text-align: center;
+}
+
 .Activities table th {
   background-color: var(--green);
-  border: none;
+  color: var(--white);
 }
-.Activities table td {
-  text-align: center;
+
+.Activities table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.Activities table .text-warning {
+  color: var(--pending) !important;
 }
 footer {
   text-align: center;
