@@ -7,9 +7,9 @@
 :root {
   --gray: #e7e9eb;
   --white: #ecebeb;
-  --black: #0d0d0d;
+  --black: #2f303c;
   --pending: rgb(247, 162, 43);
-  --green: #059862;
+  --green: #05855c;
 }
 
 body {
